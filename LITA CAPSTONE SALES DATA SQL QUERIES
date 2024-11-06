@@ -1,0 +1,71 @@
+Select * from [LITA CAPSTONE SALES DATA]
+
+...........Number One..........
+Select product,
+Sum(quantity*unitprice) as
+revenue
+From [LITA CAPSTONE SALES DATA]
+Group by product;
+
+.........Number Two...........
+Select region, count(*) as 
+NumberOfTransactions
+From [LITA CAPSTONE SALES DATA]
+Group by region
+
+...........Number Three...........
+Select top 1 product,
+sum(quantity*unitprice) as
+revenue
+From [LITA CAPSTONE SALES DATA]
+Group by product
+Order by revenue desc;
+
+..........Number Four.........
+Select month(OrderDate) as
+month, sum(quantity*unitprice)
+as MonthlySales
+From [LITA CAPSTONE SALES DATA]
+Where year(OrderDate)=
+year(GetDate())
+Group by month(OrderDate)
+Order by month;
+
+..........Number Five.........
+Select top 5 customer_id,
+sum(quantity*unitprice) as
+totalpurchaseAmount
+From [LITA CAPSTONE SALES DATA]
+Group by customer_id
+Order by TotalPurchaseAmount
+desc;
+
+..........Number Six...........
+Select region,
+sum(Total Sales) as Region_Sales,
+Sum(Total_Sales) * 100.0/ (select sum(Total Sales)
+From [LITA CAPSTONE SALES DATA] 
+As Percentage_Of_TotalSales
+From [LITA CAPSTONE SALES DATA]
+Group by region
+Order by Percentage_Of_TotalSales desc;
+
+...........Number Seven ...........
+Select distinct product 
+From [LITA CAPSTONE SALES DATA]
+Where product Not In(
+Select product 
+From [LITA CAPSTONE SALES DATA]
+Where OrderDate >=
+DateAdd(quarter,-1, GetDate()) and
+OrderDate < GetDate());
+
+..........Number Eight.........
+Select Product
+From [LITA CAPSTONE SALES DATA]
+Where Product Not In(
+Select Distinct Product
+From [LITA CAPSTONE SALES DATA]
+Where OrderDate>=
+DateAdd(Quarter, -1, GetDate()))
+Group By Product;
