@@ -1,0 +1,16 @@
+Select * from [LITA CAPSTONE SALES DATA]
+
+...........Number One..........
+Select product,
+Sum(quantity*unitprice) as
+revenue
+From [LITA CAPSTONE SALES DATA]
+Group by product;
+
+.........Number Two...........
+Select region, count(*) as 
+NumberOfTransactions
+From [LITA CAPSTONE SALES DATA]
+Group by region
+
+...........Number Three...........
